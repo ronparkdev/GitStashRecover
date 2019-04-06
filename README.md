@@ -4,21 +4,21 @@ Bash script to recover deleted stash
 # How to use
 **Before running this, BACK UP TO REMOTE!!! You should not lose bigger ones to save small one.**
 1. move to terminal
-2. copy stash_recover.sh to your git project
+2. clone this git project
 ```
-cp stash_recover.sh ~/workspace/your_project/
+git clone https://github.com/funccoder/GitStashRecover.git
 ```
 3. Grant permission to execute 
 ```
 chmod 775 stash_recover.sh
 ```
-4. Run! It takes some time. Take your patience.
+4. Run! It takes some time. Take your patience. (Usage: ./stash_recover.sh <project_folder> <max_search_days>)
 ``` 
-./stash_recover.sh
+./stash_recover.sh ../my-git-project 365
 ```
 5. Then it will show you lost stashes!
 ```
-$ ./stash.sh 
+$ ./stash_recover.sh ../my-git-project 365
 Checking object directories: 100% (256/256), done.
 Checking objects: 100% (10240/10240), done.
 >>>>>>>>> Scan Begin <<<<<<<<<<
