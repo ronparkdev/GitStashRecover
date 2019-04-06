@@ -25,7 +25,7 @@ for commit_hash in $commit_hashes ; do
 
     commit_message_first_word=$(printf '%s\n' "$commit_message" | awk '{ print $1 }')
 
-    if [ "$commit_message_first_word" != "WIP" ] && [ "$commit_message_first_word" != "No" ] ; then
+    if [ "$commit_message_first_word" != "WIP" ] && [ "$commit_message_first_word" != "On" ] ; then
         continue
     fi
 
