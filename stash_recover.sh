@@ -14,10 +14,17 @@ echo ">>>>>>>>> Begin <<<<<<<<<<"
 echo ""
 
 tmp_file=$(mktemp)
+err_file=$(mktemp)
 
 for commit_hash in $commit_hashes ; do
     # Writing commit log to temp file
-    git -C $folder show $commit_hash > $tmp_file || true
+    $(echo "") > $err_file
+    git -C $folder show $commit_hash > $tmp_file 2> $err_file
+    if [ -s $err_file ] ; then
+        cat $err_file
+        echo ""
+        continue
+    fi
 
     # Filtering with 'WIP' and 'No' (it is prefix of stash commit message)
     commit_message_line=$(($(cat $tmp_file | grep -n '^$' | head -1 | cut -d ":" -f1) + 1))
@@ -53,5 +60,6 @@ done
 
 # Removing temp file
 rm $tmp_file
+rm $err_file
 
 echo ">>>>>>>>> End <<<<<<<<<<"
